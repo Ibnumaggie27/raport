@@ -20,16 +20,11 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($request->only('username', 'password'))) {
-            $role = Auth::user()->role;
+            // Set session untuk menunjukkan status login
+            session()->put('login_success', true);
 
-            // Redirect berdasarkan role
-            if ($role === 'admin') {
-                return redirect()->route('admin.index');
-            } elseif ($role === 'guru') {
-                return redirect()->route('guru.index');
-            } elseif ($role === 'user') {
-                return redirect()->route('user.index');
-            }
+            // Redirect ke halaman loading terlebih dahulu
+            return redirect()->route('loading');
         }
 
         // Jika autentikasi gagal
@@ -42,3 +37,4 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 }
+

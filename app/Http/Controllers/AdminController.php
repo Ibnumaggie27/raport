@@ -16,7 +16,7 @@ class AdminController extends Controller
     //tampilan untuk guru
     public function index1()
     {
-        $gurus = Guru::all();
+        $gurus = Guru::paginate(10);
         return view('admin.teacher.index', compact('gurus'));
     }
     public function create1()
@@ -41,7 +41,7 @@ class AdminController extends Controller
     //tampilan untuk siswa
     public function index2()
     {
-        $siswas = siswa::all();
+        $siswas = siswa::paginate(10);
         return view('admin.student.index', compact('siswas'));
     }
     public function create2()
