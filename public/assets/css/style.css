@@ -15,12 +15,12 @@
 
 body {
     font-family: "Open Sans", sans-serif;
-    background: linear-gradient(to bottom, #0d0e0d, #49225b);
+    background: linear-gradient(to bottom, #000000, #6e3482);
     color: #444444;
 }
 
 a {
-    color: #fdfdff;
+    color: #4154f1;
     text-decoration: none;
 }
 
@@ -57,44 +57,14 @@ h6 {
 # Page Title
 --------------------------------------------------------------*/
 .pagetitle {
-    display: flex;
-    justify-content: center; /* Menempatkan konten di tengah secara horizontal */
-    align-items: center; /* Menempatkan konten di tengah secara vertikal */
-    height: 100vh; /* Mengatur tinggi elemen agar setinggi viewport */
-    margin-bottom: 100px;
-}
-#loadingScreen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Menutupi seluruh layar */
-    background-color: #f0f0f0;
-    transition: opacity 0.5s ease-out; /* Menambahkan efek transisi untuk menghilangkan loading screen */
-}
-
-#scrollNavbar {
-    position: fixed;
-    top: 0; /* Menetapkan navbar tetap di atas */
-    left: 0;
-    right: 0;
-    z-index: 1050; /* Agar navbar tetap di atas konten lainnya */
-    transition: top 0.3s ease-in-out;
+    margin-bottom: 10px;
 }
 
 .pagetitle h1 {
     font-size: 24px;
-    color: #012970;
+    margin-bottom: 0;
     font-weight: 600;
-    margin: 0;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-}
-
-.navbar {
-    transition: top 0.3s ease-in-out; /* Untuk menambahkan efek transisi pada navbar */
+    color: #fdfdfd;
 }
 
 /*--------------------------------------------------------------
@@ -337,25 +307,25 @@ body {
 .breadcrumb {
     font-size: 14px;
     font-family: "Nunito", sans-serif;
-    color: #000000;
+    color: #ffffff;
     font-weight: 600;
 }
 
 .breadcrumb a {
-    color: #000000;
+    color: #ffffff;
     transition: 0.3s;
 }
 
 .breadcrumb a:hover {
-    color: #000000;
+    color: #49225b;
 }
 
 .breadcrumb .breadcrumb-item::before {
-    color: #000000;
+    color: #ffffff;
 }
 
 .breadcrumb .active {
-    color: #000000;
+    color: #ffffff;
     font-weight: 600;
 }
 
@@ -403,7 +373,7 @@ body {
 .logo span {
     font-size: 26px;
     font-weight: 700;
-    color: #012970;
+    color: #ffffff;
     font-family: "Nunito", sans-serif;
 }
 
@@ -411,8 +381,7 @@ body {
     transition: all 0.5s;
     z-index: 997;
     height: 60px;
-    box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-    background-color: #6e3482;
+    background-color: transparent;
     padding-left: 20px;
     /* Toggle Sidebar Button */
     /* Search Bar */
@@ -422,7 +391,7 @@ body {
     font-size: 32px;
     padding-left: 10px;
     cursor: pointer;
-    color: #012970;
+    color: #ffffff;
 }
 
 .header .search-bar {
@@ -459,7 +428,7 @@ body {
 .header .search-form input {
     border: 0;
     font-size: 14px;
-    color: #012970;
+    color: #ffffff;
     border: 1px solid rgba(1, 41, 112, 0.2);
     padding: 7px 38px 7px 8px;
     border-radius: 3px;
@@ -482,7 +451,7 @@ body {
 }
 
 .header .search-form button i {
-    color: #012970;
+    color: #ffffff;
 }
 
 /*--------------------------------------------------------------
@@ -499,13 +468,13 @@ body {
 
 .header-nav .nav-icon {
     font-size: 22px;
-    color: #012970;
+    color: #ffffff;
     margin-right: 25px;
     position: relative;
 }
 
 .header-nav .nav-profile {
-    color: #012970;
+    color: #ffffff;
 }
 
 .header-nav .nav-profile img {
@@ -628,7 +597,7 @@ body {
 /*--------------------------------------------------------------
 # Sidebar
 --------------------------------------------------------------*/
-/* .sidebar {
+.sidebar {
     position: fixed;
     top: 60px;
     left: 0;
@@ -640,8 +609,7 @@ body {
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #aab7cf transparent;
-    box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-    background-color: #e7dbef;
+    background: transparent;
 }
 
 @media (max-width: 1199px) {
@@ -715,7 +683,7 @@ body {
     font-weight: 600;
     color: #bac7c4;
     transition: 0.3;
-    background: #5d7d76;
+    background: #49225b;
     padding: 10px 15px;
     border-radius: 4px;
 }
@@ -728,7 +696,7 @@ body {
 
 .sidebar-nav .nav-link.collapsed {
     color: #d1dad8;
-    background: #5d7d76;
+    background: transparent;
 }
 
 .sidebar-nav .nav-link.collapsed i {
@@ -736,12 +704,12 @@ body {
 }
 
 .sidebar-nav .nav-link:hover {
-    color: #4154f1;
-    background: #f6f9ff;
+    color: #ffffff;
+    background: #6e3482;
 }
 
 .sidebar-nav .nav-link:hover i {
-    color: #4154f1;
+    color: #ffffff;
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
@@ -784,7 +752,7 @@ body {
 
 .sidebar-nav .nav-content a.active i {
     background-color: #4154f1;
-} */
+}
 
 /*--------------------------------------------------------------
 # Dashboard
@@ -1246,8 +1214,7 @@ body {
     padding: 10px 0;
     font-size: 14px;
     transition: all 0.3s;
-    border-top: 1px solid #cddfff;
-    background-color: #6e3482;
+    background-color: transparent;
 }
 
 .footer .copyright {

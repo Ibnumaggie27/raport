@@ -12,58 +12,44 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('user.index') }}">
-          <i class="bi bi-person"></i>
-          <span>halaman user</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-      <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('teacher.index') }}">
           <i class="bi bi-person"></i>
-          <span>tambah Guru</span>
+          <span>guru</span>
         </a>
       </li><!-- End Profile Page Nav -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ route('student.index') }}">
-          <i class="bi bi-person"></i>
-          <span>tambah siswa</span>
-        </a>
-      </li><!-- End Profile Page Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('guru.index') }}">
           <i class="bi bi-question-circle"></i>
-          <span>halaman guru</span>
+          <span>siswa</span>
         </a>
       </li><!-- End F.A.Q Page Nav -->
-
-      {{-- <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#">
           <i class="bi bi-envelope"></i>
-          <span>Absen</span>
+          <span>mapel</span>
         </a>
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#">
           <i class="bi bi-card-list"></i>
-          <span>Data Guru</span>
+          <span>kelas</span>
         </a>
       </li><!-- End Register Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="#">
           <i class="bi bi-box-arrow-in-right"></i>
-          <span>Siswa</span>
+          <span>wali kelas</span>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#">
           <i class="bi bi-box-arrow-in-right"></i>
-          <span>Mutasi Siswa</span>
+          <span>guru mapel</span>
         </a>
       </li>
-      <li class="nav-item">
+      {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Bank Soal</span>

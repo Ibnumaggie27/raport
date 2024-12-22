@@ -3,8 +3,8 @@
     <div class="d-flex align-items-center justify-content-between">
       <i class="bi bi-list toggle-sidebar-btn"></i>
       <a href="{{ route('admin.index') }}" class="logo d-flex align-items-center">
-        <img src="{{ asset('assets/img/tut.png') }}" alt="">
-        <span class="d-none d-lg-block">CIKUL2</span>
+        <img src="{{ asset('assets/img/saka.png') }}" alt="">
+        <span class="d-none d-lg-block">SAKA</span>
       </a>
     </div><!-- End Logo -->
 
@@ -24,8 +24,8 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
               <li class="dropdown-header">
                   <!-- Menampilkan nama lengkap pengguna yang login -->
-                  <h6>q</h6>
-                  <span>q</span> <!-- Menampilkan role jika ada -->
+                  <h6>{{ Auth::user()->username }}</h6>
+                  <span>{{ Auth::user()->role ?? 'User' }}</span> <!-- Menampilkan role jika ada -->
               </li>
               <li>
                   <hr class="dropdown-divider">

@@ -352,24 +352,3 @@ window.onscroll = function () {
 window.onscroll = function () {
     showNavbarAndHideLoadingScreen();
 };
-
-function showNavbarAndHideLoadingScreen() {
-    var navbar = document.getElementById("scrollNavbar");
-    var loadingScreen = document.getElementById("loadingScreen");
-
-    // Jika scroll lebih dari 50px, navbar akan muncul dan loading screen menghilang
-    if (
-        document.body.scrollTop > 50 ||
-        document.documentElement.scrollTop > 50
-    ) {
-        navbar.classList.remove("d-none"); // Menampilkan navbar
-        loadingScreen.style.opacity = "0"; // Menyembunyikan loading screen dengan transisi
-        setTimeout(() => {
-            loadingScreen.style.display = "none"; // Setelah transisi selesai, menghilangkan loading screen
-        }, 500); // Sesuaikan dengan durasi transisi
-    } else {
-        navbar.classList.add("d-none"); // Menyembunyikan navbar saat di atas
-        loadingScreen.style.opacity = "1"; // Memastikan loading screen tetap muncul di awal
-        loadingScreen.style.display = "flex"; // Menampilkan kembali loading screen
-    }
-}

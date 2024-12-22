@@ -42,16 +42,16 @@
 <body>
     <div class="app-wrapper">
 
-        @include('admin.layout.navbar')
+        @include('guru.layout.navbar')
 
-        @include('admin.layout.sidebar')
+        @include('guru.layout.sidebar')
         <!-- End Navbar -->
 
         <main class="app-main">
             @yield('content')
         </main>
 
-        @include('admin.layout.footer')
+        @include('guru.layout.footer')
     </div>
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
