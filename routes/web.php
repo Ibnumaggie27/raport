@@ -23,6 +23,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('student', [AdminController::class, 'index2'])->name('student.index');
     Route::get('/student/create', [AdminController::class, 'create2'])->name('student.create');
     Route::post('/student', [AdminController::class, 'store2'])->name('student.store');
+
+    // start route mapel
+    Route::get('mapel', [AdminController::class, 'index3'])->name('mapel.index');
+    Route::get('/mapel/create', [AdminController::class, 'create3'])->name('mapel.create');
+    Route::post('/mapel', [AdminController::class, 'store3'])->name('mapel.store');
+    // end route mapel
 });
 
 Route::middleware(['auth', 'role:guru'])->group(function () {
