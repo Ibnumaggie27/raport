@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Guru;
 use App\Models\Siswa;
+use App\Models\Mapel;
 
 class AdminController extends Controller
 {
@@ -62,4 +63,26 @@ class AdminController extends Controller
 
         return redirect()->route('admin.index')->with('success', 'Data siswa berhasil ditambahkan.');
     }
+
+    // start tampilan untuk mapel
+    public function index3() {
+        $mapels = Mapel::all();
+        return view('admin.mapel.index', compact('mapels'));
+    }
+
+    public function create3() {
+        return view('admin.mapel.create');
+    }
+
+    public function store3(Request $request) {
+        $request->validate([
+            'kode' => 'required',
+            'nama' => 'required',
+        ]);
+
+        Mapel::create($request->all());
+
+        return redirect()->route('admin.index')->with('success', 'Data Mapel berhasil ditambahkan.');
+    }
+    // end tampilan untuk mapel
 }
