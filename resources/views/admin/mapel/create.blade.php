@@ -17,11 +17,11 @@
     <form action="{{ route('mapel.store') }}" method="POST">
         @csrf
         <div class="form-group mb-3">
-            <label for="nis">Kode Mapel</label>
+            <label for="nis" class="form-label">Kode Mapel</label>
             <input type="text" id="kode" name="kode" class="form-control" required>
         </div>
         <div class="form-group mb-3">
-            <label for="nama">Nama Mapel</label>
+            <label for="nama" class="form-label">Nama Mapel</label>
             <input type="text" id="nama" name="nama" class="form-control" required>
         </div>
         <button type="submit" class="btn btn-success">Simpan</button>

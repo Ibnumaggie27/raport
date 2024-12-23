@@ -46,6 +46,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Kode</th>
                             <th scope="col">Nama</th>
+                            <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,12 +58,12 @@
                                 <td>
                                     <div class="btn-group" role="group">
                                         <!-- Edit Button -->
-                                        <a href="#" class="btn btn-warning btn-sm" title="Edit Data Guru">
+                                        <a href="{{ route('mapel.edit', $dataMapel->id) }}" class="btn btn-warning btn-sm" title="Edit Data Guru">
                                             Edit
                                         </a>
                                         
                                         <!-- Delete Button -->
-                                        <form action="#" method="POST" style="display:inline;">
+                                        <form action="{{ route('mapel.destroy', $dataMapel->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>

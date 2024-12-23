@@ -17,17 +17,28 @@ Route::get('/loading', function () {
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+
     Route::get('teacher', [AdminController::class, 'index1'])->name('teacher.index');
     Route::get('/teacher/create', [AdminController::class, 'create1'])->name('teacher.create');
     Route::post('/teacher', [AdminController::class, 'store1'])->name('teacher.store');
+    Route::get('teacher/{id}/edit', [AdminController::class, 'edit1'])->name('teacher.edit');
+    Route::put('teacher/{id}', [AdminController::class, 'update1'])->name('teacher.update');
+    Route::delete('teacher/{id}', [AdminController::class, 'destroy1'])->name('teacher.destroy');
+
     Route::get('student', [AdminController::class, 'index2'])->name('student.index');
     Route::get('/student/create', [AdminController::class, 'create2'])->name('student.create');
     Route::post('/student', [AdminController::class, 'store2'])->name('student.store');
+    Route::get('student/{id}/edit', [AdminController::class, 'edit2'])->name('student.edit');
+    Route::put('student/{id}', [AdminController::class, 'update2'])->name('student.update');
+    Route::delete('student/{id}', [AdminController::class, 'destroy2'])->name('student.destroy');
 
     // start route mapel
     Route::get('mapel', [AdminController::class, 'index3'])->name('mapel.index');
     Route::get('/mapel/create', [AdminController::class, 'create3'])->name('mapel.create');
     Route::post('/mapel', [AdminController::class, 'store3'])->name('mapel.store');
+    Route::get('mapel/{id}/edit', [AdminController::class, 'edit3'])->name('mapel.edit');
+    Route::put('mapel/{id}', [AdminController::class, 'update3'])->name('mapel.update');
+    Route::delete('mapel/{id}', [AdminController::class, 'destroy3'])->name('mapel.destroy');
     // end route mapel
 });
 

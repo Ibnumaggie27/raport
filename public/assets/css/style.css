@@ -1251,3 +1251,6 @@ h6 {
 .btn-group {
     gap: 10px;
 }
+.form-label {
+    color: rgb(255, 255, 255); /* Ganti dengan warna yang diinginkan */
+}
