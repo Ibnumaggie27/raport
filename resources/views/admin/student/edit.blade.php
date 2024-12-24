@@ -39,9 +39,20 @@
 
                             <div class="mb-3">
                                 <label for="kelas" class="form-label">Kelas</label>
-                                <textarea name="kelas" class="form-control" id="kelas" rows="3" required>{{ old('kelas', $siswas->kelas) }}</textarea>
-                                @error('kelas') <div class="text-danger">{{ $message }}</div> @enderror
+                                <select name="kelas_id" class="form-control" id="kelas" required>
+                                    <option value="" disabled selected>Pilih Kelas</option>
+                                    @foreach($kelass as $kelas)
+                                        <option value="{{ $kelas->id }}" 
+                                            {{ old('kelas_id') == $kelas->id ? 'selected' : '' }}>
+                                            {{ $kelas->nama_kelas }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('kelas_id') 
+                                    <div class="text-danger">{{ $message }}</div> 
+                                @enderror
                             </div>
+                            
 
                             <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>

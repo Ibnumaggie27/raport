@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Guru;
 use App\Models\Siswa;
 use App\Models\Mapel;
+use App\Models\gumap;
+use App\Models\kelas;
 use Illuminate\Support\Facades\DB;
+use App\Models\wakel;
 
 class AdminController extends Controller
 {
@@ -82,53 +85,60 @@ public function destroy1($id)
         return view('admin.student.index', compact('siswas'));
     }
     public function create2()
-    {
-        return view('admin.student.create');
-    }
+{
+    // Mengambil semua data kelas dari tabel kelas
+    $kelass = Kelas::all(); 
 
-    public function store2(Request $request)
-    {
-        $request->validate([
-            'nis' => 'required|unique:gurus,nip',
-            'nama' => 'required',
-            'email' => 'nullable|email',
-            'kelas' => 'nullable',
-        ]);
+    // Mengirimkan data kelas ke view
+    return view('admin.student.create', compact('kelass'));
+}
+public function store2(Request $request)
+{
+    $request->validate([
+        'nis' => 'required|unique:siswas,nis',
+        'nama' => 'required|string|max:255',
+        'email' => 'nullable|email|max:255',
+        'kelas_id' => 'nullable|exists:kelas,id',
+    ]);
 
-        Siswa::create($request->all());
+    Siswa::create([
+        'nis' => $request->nis,
+        'nama' => $request->nama,
+        'email' => $request->email,
+        'kelas_id' => $request->kelas_id,
+    ]);
 
-        return redirect()->route('student.index')->with('success', 'Data siswa berhasil ditambahkan.');
-    }
-    
-    public function edit2($id)
-    {
-        $siswas = siswa::findOrFail($id);
-        return view('admin.student.edit', compact('siswas'));
-    }
+    return redirect()->route('student.index')->with('success', 'Data siswa berhasil ditambahkan.');
+}
+
+public function edit2($id)
+{
+    $siswas = siswa::findOrFail($id);
+    $kelass = Kelas::all(); // Ambil data kelas untuk dropdown
+    return view('admin.student.edit', compact('siswas', 'kelass')); // Kirim data siswa dan kelas ke view
+}
     public function update2(Request $request, $id)
 {
     $request->validate([
         'nama' => 'required|string|max:255',
         'nis' => 'required|string|max:255|unique:siswas,nis,' . $id,
         'email' => 'nullable|email|max:100',
-        'kelas' => 'required|string',
+        'kelas_id' => 'nullable|exists:kelas,id',
     ]);
 
     $siswas = siswa::findOrFail($id);
 
     DB::transaction(function () use ($request, $siswas) {
-        // Update data guru
         $siswas->update([
             'nama' => $request->nama,
             'nis' => $request->nis,
             'email' => $request->email,
-            'kelas' => $request->kelas,
+            'kelas_id' => $request->kelas_id,
         ]);
     });
 
     return redirect()->route('student.index')->with('success', 'Data Siswa berhasil diperbarui.');
 }
-
 public function destroy2($id)
 {
     $siswas = siswa::findOrFail($id);
@@ -189,4 +199,166 @@ public function destroy3($id)
     return redirect()->route('student.index')->with('success', 'Data Mata Pelajaran berhasil dihapus.');
 }
     // end tampilan untuk mapel
+
+    // start tampilan untuk guru mapel
+    public function index4()
+    {
+        $gumaps = gumap::paginate(10);
+        return view('admin.gumap.index', compact('gumaps'));
+    }
+    public function create4()
+    {
+        $mapels = Mapel::all();
+        $gurus = Guru::all();
+        return view('admin.gumap.create', compact('mapels', 'gurus'));
+    }
+    public function store4(Request $request)
+    {
+        $request->validate([
+            'guru_id' => 'required',
+            'mapel_id' => 'required',
+        ]);
+
+        gumap::create($request->all());
+
+        return redirect()->route('gumap.index')->with('success', 'Data Guru Mata Pelajaran berhasil ditambahkan.');
+    }
+    public function edit4($id)
+    {
+        $gumaps = gumap::findOrFail($id);
+        $mapels = Mapel::all();
+        $gurus = Guru::all();
+        return view('admin.gumap.edit', compact('gumaps', 'mapels', 'gurus'));
+    }
+    public function update4(Request $request, $id)
+    {
+        $request->validate([
+            'guru_id' => 'required',
+            'mapel_id' => 'required',
+        ]);
+
+        $gumaps = gumap::findOrFail($id);
+
+        DB::transaction(function () use ($request, $gumaps) {
+            // Update data guru
+            $gumaps->update([
+                'guru_id' => $request->guru_id,
+                'mapel_id' => $request->mapel_id,
+            ]);
+        });
+
+        return redirect()->route('gumap.index')->with('success', 'Data Guru Mata Pelajaran berhasil diperbarui.');
+    }
+    public function destroy4($id)
+    {
+        $gumaps = gumap::findOrFail($id);
+        $gumaps->delete();
+        return redirect()->route('gumap.index')->with('success', 'Data Guru Mata Pelajaran berhasil dihapus.');
+    }
+    // end tampilan untuk guru mapel
+
+    // start tampilan untuk kelas
+    public function index5()
+    {
+        $kelass = kelas::paginate(10);
+        return view('admin.kelas.index', compact('kelass'));
+    }
+    public function create5()
+    {
+        return view('admin.kelas.create');
+    }
+    public function store5(Request $request)
+    {
+        $request->validate([
+            'nama_kelas' => 'required',
+        ]);
+
+        kelas::create($request->all());
+
+        return redirect()->route('kelas.index')->with('success', 'Data Kelas berhasil ditambahkan.');
+    }
+    public function edit5($id)
+    {
+        $kelass = kelas::findOrFail($id);
+        return view('admin.kelas.edit', compact('kelass'));
+    }
+    public function update5(Request $request, $id)
+    {
+        $request->validate([
+            'nama_kelas' => 'required',
+        ]);
+
+        $kelass = kelas::findOrFail($id);
+
+        DB::transaction(function () use ($request, $kelass) {
+            // Update data guru
+            $kelass->update([
+                'nama_kelas' => $request->nama_kelas,
+            ]);
+        });
+
+        return redirect()->route('kelas.index')->with('success', 'Data Kelas berhasil diperbarui.');
+    }
+    public function destroy5($id)
+    {
+        $kelass = kelas::findOrFail($id);
+        $kelass->delete();
+        return redirect()->route('kelas.index')->with('success', 'Data Kelas berhasil dihapus.');
+    }
+    // end tampilan untuk kelas
+    
+    // start tampilan untuk wali kelas
+    public function index6()
+    {
+        return view('admin.wakel.index');
+    }
+    public function create6()
+    {
+        $kelas = kelas::all();
+        $gurus = Guru::all();
+        return view('admin.wakel.create', compact('kelas', 'gurus'));
+    }
+    public function store6(Request $request)
+    {
+        $request->validate([
+            'kelas_id' => 'required',
+            'guru_id' => 'required',
+        ]);
+
+        wakel::create($request->all());
+
+        return redirect()->route('walikelas.index')->with('success', 'Data Wali Kelas berhasil ditambahkan.');
+    }
+    public function edit6($id)
+    {
+        $wakels = wakel::findOrFail($id);
+        return view('admin.wakel.edit', compact('wakels'));
+    }
+    public function update6(Request $request, $id)
+    {
+        $request->validate([
+            'kelas_id' => 'required',
+            'guru_id' => 'required',
+        ]);
+
+        $wakels = wakel::findOrFail($id);
+
+        DB::transaction(function () use ($request, $wakels) {
+            // Update data guru
+            $wakels->update([
+                'kelas_id' => $request->kelas_id,
+                'guru_id' => $request->guru_id,
+            ]);
+        });
+
+        return redirect()->route('walikelas.index')->with('success', 'Data Wali Kelas berhasil diperbarui.');
+    }
+    public function destroy6($id)
+    {
+        $wakels = wakel::findOrFail($id);
+        $wakels->delete();
+        return redirect()->route('walikelas.index')->with('success', 'Data Wali Kelas berhasil dihapus.');
+    }
+    //end tampilan untuk wali kelas
+
 }

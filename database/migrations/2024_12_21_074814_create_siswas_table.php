@@ -9,14 +9,15 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('siswas', function (Blueprint $table) {
             $table->id(); // Primary key
             $table->string('nis')->unique(); // Nomor Induk Siswa
             $table->string('nama'); // Nama Siswa
             $table->string('email')->nullable(); // Email Siswa
-            $table->string('kelas')->nullable(); // Kelas Siswa
+            $table->unsignedBigInteger('kelas_id')->nullable(); // Foreign key ke tabel kelas
+            $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('set null'); // Relasi dengan tabel kelas
             $table->timestamps(); // Kolom created_at dan updated_at
         });
     }
@@ -26,6 +27,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('siswas');
+        Schema::table('siswas', function (Blueprint $table) {
+            $table->dropForeign(['kelas_id']); // Hapus foreign key
+        });
+        Schema::dropIfExists('siswas'); // Hapus tabel siswas
     }
 };

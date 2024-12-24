@@ -4,7 +4,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Data Siswa</h1>
+        <h1>Data Wali Kelas</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -14,7 +14,7 @@
     </div><!-- End Page Title -->
 
     <div class="d-flex justify-content-end mb-3">
-        <a href="{{ route('student.create') }}" class="btn btn-custom">Tambah siswa</a>
+        <a href="{{ route('walikelas.create') }}" class="btn btn-custom">Tambah Wakel</a>
     </div>
     @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -29,7 +29,7 @@
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
-    <section class="section">
+    {{-- <section class="section">
        <div class="row">
          <div class="col-lg-12">
      
@@ -58,20 +58,6 @@
                                    <td>{{ $dataSiswa->nis }}</td>
                                    <td>{{ $dataSiswa->email }}</td>
                                    <td>{{ $dataSiswa->kelas->nama_kelas }}</td>
-                                   {{-- <td>
-                                       @if($dataGuru->gambar_ijazah)
-                                           <img src="{{ asset('storage/' . $dataGuru->gambar_ijazah) }}" alt="Ijazah" style="width: 100px; height: 100px; object-fit: contain;">
-                                       @else
-                                           <span>No Image</span>
-                                       @endif
-                                   </td>
-                                   <td>
-                                       @if($dataGuru->gambar_ktp)
-                                           <img src="{{ asset('storage/' . $dataGuru->gambar_ktp) }}" alt="KTP" style="width: 100px; height: 100px; object-fit: contain;">
-                                       @else
-                                           <span>No Image</span>
-                                       @endif
-                                   </td> --}}
                                    <td>
                                        <div class="btn-group" role="group">
                                            <!-- Edit Button -->
@@ -100,6 +86,6 @@
      
          </div>
        </div>
-     </section>
+     </section> --}}
 </main>
 @endsection

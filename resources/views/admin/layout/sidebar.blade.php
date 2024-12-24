@@ -31,20 +31,20 @@
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="{{ route('kelas.index') }}">
           <i class="bi bi-card-list"></i>
           <span>kelas</span>
         </a>
       </li><!-- End Register Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="{{ route('walikelas.index') }}">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>wali kelas</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="{{ route('gumap.index') }}">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>guru mapel</span>
         </a>
