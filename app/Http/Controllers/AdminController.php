@@ -310,7 +310,8 @@ public function destroy3($id)
     // start tampilan untuk wali kelas
     public function index6()
     {
-        return view('admin.wakel.index');
+        $wakels = wakel::paginate(10);
+        return view('admin.wakel.index', compact('wakels'));
     }
     public function create6()
     {
@@ -332,7 +333,9 @@ public function destroy3($id)
     public function edit6($id)
     {
         $wakels = wakel::findOrFail($id);
-        return view('admin.wakel.edit', compact('wakels'));
+        $kelass = kelas::all();
+        $gurus = Guru::all();
+        return view('admin.wakel.edit', compact('wakels','kelass','gurus'));
     }
     public function update6(Request $request, $id)
     {
