@@ -40,6 +40,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('mapel/{id}', [AdminController::class, 'update3'])->name('mapel.update');
     Route::delete('mapel/{id}', [AdminController::class, 'destroy3'])->name('mapel.destroy');
     // end route mapel
+
+    // start guru mapel
+    Route::get('guru-mapel', [AdminController::class, 'indexGuruMapel'])->name('guru-mapel.index');
+    Route::get('/guru-mapel/create', [AdminController::class, 'createGuruMapel'])->name('guru-mapel.create');
+    Route::post('/guru-mapel', [AdminController::class, 'storeGuruMapel'])->name('guru-mapel.store');
+    Route::get('guru-mapel/{id}/edit', [AdminController::class, 'editGuruMapel'])->name('guru-mapel.edit');
+    Route::put('guru-mapel/{id}', [AdminController::class, 'updateGuruMapel'])->name('guru-mapel.update');
+    Route::delete('guru-mapel/{id}', [AdminController::class, 'destroyGuruMapel'])->name('guru-mapel.destroy');
+    // end guru mapel
 });
 
 Route::middleware(['auth', 'role:guru'])->group(function () {

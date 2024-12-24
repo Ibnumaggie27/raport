@@ -44,7 +44,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="{{ route('guru-mapel.index') }}">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>guru mapel</span>
         </a>

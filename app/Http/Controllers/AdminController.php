@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Guru;
 use App\Models\Siswa;
 use App\Models\Mapel;
+use App\Models\GuruMapel;
 use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
@@ -189,4 +190,72 @@ public function destroy3($id)
     return redirect()->route('student.index')->with('success', 'Data Mata Pelajaran berhasil dihapus.');
 }
     // end tampilan untuk mapel
+
+
+    // start guru mapel
+    public function indexGuruMapel() {
+        $guruMapels = GuruMapel::all();
+        $mapel = Mapel::all();
+        $guru = Guru::all();
+        return view('admin.guru-mapel.index', compact('guruMapels','mapel','guru'));
+    }
+
+    public function createGuruMapel() {
+        $mapels = Mapel::all();
+        $gurus = Guru::all();
+        return view('admin.guru-mapel.create', compact('mapels','gurus'));
+    }
+
+    // add guru mapel
+    public function storeGuruMapel(Request $request) {
+        $request->validate([
+            'guru_id' => 'required',
+            'mapel_id' => 'required',
+        ]);
+
+        GuruMapel::create([
+            'guru_id' => $request->guru_id,
+            'mapel_id' => $request->mapel_id,
+        ]);
+
+        return redirect()->route('guru-mapel.index')->with('success', 'Data Guru Mapel berhasil ditambahkan.');
+    }
+
+    // edit guru mapel
+    public function editGuruMapel($id)
+    {
+        $guruMapels = GuruMapel::findOrFail($id);
+        $mapel = Mapel::all();
+        $guru = Guru::all();
+        return view('admin.guru-mapel.edit', compact('guruMapels','mapel','guru'));
+    }
+
+    // bagian update data
+    public function updateGuruMapel(Request $request, $id)
+    {
+        $request->validate([
+            'mapel_id' => 'required|exists:mapels,id', // Validasi ID Mapel
+            'guru_id' => 'required|exists:gurus,id',  // Validasi ID Guru
+        ]);
+    
+        $guruMapel = GuruMapel::findOrFail($id);
+    
+        DB::transaction(function () use ($request, $guruMapel) {
+            $guruMapel->update([
+                'mapel_id' => $request->mapel_id,
+                'guru_id' => $request->guru_id,
+            ]);
+        });
+    
+        return redirect()->route('guru-mapel.index')->with('success', 'Data Guru Mata Pelajaran berhasil diperbarui.');
+    }
+
+    // delete guru mapel
+    public function destroyGuruMapel($id)
+    {
+        $guruMapels = GuruMapel::findOrFail($id);
+        $guruMapels->delete();
+        return redirect()->route('guru-mapel.index')->with('success', 'Data Guru Mata Pelajaran berhasil dihapus.');
+    }
+    // end guru mapel
 }
