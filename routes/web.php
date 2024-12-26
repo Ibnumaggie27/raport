@@ -70,6 +70,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('walikelas/{id}', [AdminController::class, 'update6'])->name('walikelas.update');
     Route::delete('walikelas/{id}', [AdminController::class, 'destroy6'])->name('walikelas.destroy');
     //end route wali kelas
+
+    //start route paket
+    Route::get('paket', [AdminController::class, 'index7'])->name('paket.index');
+    Route::get('/paket/create', [AdminController::class, 'create7'])->name('paket.create');
+    Route::post('/paket', [AdminController::class, 'store7'])->name('paket.store');
+    Route::get('paket/{id}/edit', [AdminController::class, 'edit7'])->name('paket.edit');
+    Route::put('paket/{id}', [AdminController::class, 'update7'])->name('paket.update');
+    Route::delete('paket/{id}', [AdminController::class, 'destroy7'])->name('paket.destroy');
+    //end route paket
 });
 
 Route::middleware(['auth', 'role:guru'])->group(function () {

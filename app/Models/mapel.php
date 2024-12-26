@@ -9,5 +9,14 @@ class Mapel extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['kode', 'nama']; // Tambahkan atribut sesuai dengan tabel mapel
+    protected $fillable = ['kode', 'nama'];
+    
+    public function kelass()
+    {
+        return $this->belongsToMany(Kelas::class, 'pakets', 'mapel_id', 'kelas_id');
+    }
+    public function pakets()
+    {
+        return $this->belongsToMany(Paket::class, 'mapel_paket');
+    }
 }

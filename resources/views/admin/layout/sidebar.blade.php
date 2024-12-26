@@ -49,12 +49,12 @@
           <span>guru mapel</span>
         </a>
       </li>
-      {{-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('paket.index') }}">
           <i class="bi bi-box-arrow-in-right"></i>
-          <span>Bank Soal</span>
+          <span>Paket</span>
         </a>
-      </li> --}}
+      </li>
       <br>
 
     </ul>
