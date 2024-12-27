@@ -3,7 +3,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="{{ route('admin.index') }}">
+        <a class="nav-link " href="{{ route('guru.index') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -12,18 +12,19 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="{{ route('guru.profile') }}">
           <i class="bi bi-person"></i>
-          <span>halaman user</span>
+          <span>Profile</span>
         </a>
       </li><!-- End Profile Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
+        <a class="nav-link collapsed" href="{{ route('guru.waliKelas') }}">
           <i class="bi bi-question-circle"></i>
-          <span>halaman guru</span>
+          <span>Data Wali Kelas</span>
         </a>
-      </li><!-- End F.A.Q Page Nav -->
+      </li>
+      <!-- End F.A.Q Page Nav -->
 
       {{-- <li class="nav-item">
         <a class="nav-link collapsed" href="#">

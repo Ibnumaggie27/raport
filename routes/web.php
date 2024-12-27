@@ -83,6 +83,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:guru'])->group(function () {
     Route::get('guru', [GuruController::class, 'index'])->name('guru.index');
+    Route::get('/guru/profile', [GuruController::class, 'profile'])->name('guru.profile');
+    Route::get('/guru/wali_kelas', [GuruController::class, 'waliKelas'])->name('guru.waliKelas');
 });
 
 Route::middleware(['auth', 'role:user'])->group(function () {
