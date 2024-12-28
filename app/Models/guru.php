@@ -48,5 +48,9 @@ class Guru extends Model
 {
     return $this->hasManyThrough(Paket::class, Gumap::class, 'guru_id', 'mapel_id', 'id', 'mapel_id');
 }
+public function wakels()
+    {
+        return $this->hasMany(Wakel::class);
+    }
 
 }

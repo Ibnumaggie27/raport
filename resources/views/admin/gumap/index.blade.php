@@ -54,7 +54,8 @@
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $dataGumap->guru->nama }}</td>
-                                <td>{{ $dataGumap->mapel->nama }}</td>
+                                <td>{{ $dataGumap->mapel->kode }} - {{ $dataGumap->mapel->nama }}</td>
+
                                 <td>
                                     <div class="btn-group" role="group">
                                         <!-- Edit Button -->

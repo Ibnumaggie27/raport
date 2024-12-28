@@ -22,7 +22,7 @@
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" name="mapel_id[]" id="mapel_{{ $mapel->id }}" value="{{ $mapel->id }}">
                     <label class="form-check-label form-label" for="mapel_{{ $mapel->id }}">
-                        {{ $mapel->nama }}
+                        {{ $mapel->kode }} - {{ $mapel->nama }}
                     </label>
                 </div>
             @endforeach

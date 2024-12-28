@@ -29,42 +29,42 @@ class GuruController extends Controller
         return view('guru.nilai.index', compact('gurus'));
     }
     public function create1($mapel_id)
-{
-    // Ambil data guru yang sedang login
-    $guru = Guru::where('user_id', Auth::id())->first();
+    {
+        // Ambil data guru yang sedang login
+        $guru = Guru::where('user_id', Auth::id())->first();
 
-    if (!$guru) {
-        return redirect()->back()->with('error', 'Guru tidak ditemukan.');
+        if (!$guru) {
+            return redirect()->back()->with('error', 'Guru tidak ditemukan.');
+        }
+
+        // Ambil gumap (guru mapel) terkait guru yang sedang login
+        $gumap = Gumap::where('guru_id', $guru->id)->where('mapel_id', $mapel_id)->with('mapel')->first();
+
+        if (!$gumap) {
+            return redirect()->back()->with('error', 'Data mata pelajaran tidak ditemukan.');
+        }
+
+        // Ambil paket yang terkait dengan mapel dan guru
+        $paket = Paket::whereHas('mapels', function ($query) use ($mapel_id) {
+            $query->where('mapels.id', $mapel_id);
+        })->with('kelas')->first();
+
+        if (!$paket) {
+            return redirect()->back()->with('error', 'Paket tidak ditemukan.');
+        }
+
+        // Ambil kelas terkait dengan paket
+        $kelas = $paket->kelas;
+
+        if (!$kelas) {
+            return redirect()->back()->with('error', 'Kelas tidak ditemukan.');
+        }
+
+        // Ambil semua siswa yang terhubung dengan kelas
+        $siswas = Siswa::where('kelas_id', $kelas->id)->get();
+
+        return view('guru.nilai.create', compact('guru', 'gumap', 'paket', 'kelas', 'siswas'));
     }
-
-    // Ambil gumap (guru mapel) terkait guru yang sedang login
-    $gumap = Gumap::where('guru_id', $guru->id)->where('mapel_id', $mapel_id)->with('mapel')->first();
-
-    if (!$gumap) {
-        return redirect()->back()->with('error', 'Data mata pelajaran tidak ditemukan.');
-    }
-
-    // Ambil paket yang terkait dengan mapel dan guru
-    $paket = Paket::whereHas('mapels', function ($query) use ($mapel_id) {
-        $query->where('mapels.id', $mapel_id);
-    })->with('kelas')->first();
-
-    if (!$paket) {
-        return redirect()->back()->with('error', 'Paket tidak ditemukan.');
-    }
-
-    // Ambil kelas terkait dengan paket
-    $kelas = $paket->kelas;
-
-    if (!$kelas) {
-        return redirect()->back()->with('error', 'Kelas tidak ditemukan.');
-    }
-
-    // Ambil semua siswa yang terhubung dengan kelas
-    $siswas = Siswa::where('kelas_id', $kelas->id)->get();
-
-    return view('guru.nilai.create', compact('guru', 'gumap', 'paket', 'kelas', 'siswas'));
-}
  public function store1(Request $request)
     {
         $request->validate([
@@ -90,4 +90,17 @@ class GuruController extends Controller
     }
 
 //end route nilai
+
+//start route wakel
+public function index2()
+{
+    // Fetch the guru data with their associated wakels and the related kelas
+    $gurus = Guru::with('wakels.kelas') // Eager load the 'kelas' relationship through 'wakels'
+        ->where('user_id', Auth::id()) // Filter by the logged-in user's ID
+        ->paginate(10); // Paginate the results for the teacher
+
+    return view('guru.wakel.index', compact('gurus')); // Pass the data to the view
+}
+
+    //end route wakel
 }

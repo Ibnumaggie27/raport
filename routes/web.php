@@ -92,6 +92,10 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
     Route::put('nilai/{id}', [GuruController::class, 'update1'])->name('nilai.update');
     Route::delete('nilai/{id}', [GuruController::class, 'destroy1'])->name('nilai.destroy');
     //end route nilai
+
+    //start route wakel
+    Route::get('wakel', [GuruController::class, 'index2'])->name('wakel.index');
+    //end route wakel
 });
 
 Route::middleware(['auth', 'role:user'])->group(function () {

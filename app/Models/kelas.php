@@ -27,4 +27,5 @@ class Kelas extends Model
     {
         return $this->hasMany(Nilai::class);
     }
+    
 }

@@ -31,7 +31,7 @@
             @foreach ($mapels as $item)
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" name="mapel_id[]" value="{{ $item->id }}" id="mapel{{ $item->id }}">
-                    <label class="form-check-label form-label" for="mapel{{ $item->id }}">{{ $item->nama }}</label>
+                    <label class="form-check-label form-label" for="mapel{{ $item->id }}">{{ $item->kode }}-{{ $item->nama }}</label>
                 </div>
             @endforeach
         </div>

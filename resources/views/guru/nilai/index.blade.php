@@ -71,7 +71,7 @@
                                                         @endforeach
                                                     </td>
                                                 @endif
-                                                <td class="align-middle">{{ $mapel->nama }}</td>
+                                                <td class="align-middle">{{ $mapel->kode }}-{{ $mapel->nama }}</td>
                                                 <td class="align-middle text-center">
                                                     <div class="btn-group" role="group">
                                                         <a href="{{ route('nilai.create', ['mapel_id' => $mapel->id]) }}" class="btn btn-warning btn-sm" title="Edit {{ $mapel->nama }}">Edit</a>

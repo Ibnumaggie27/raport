@@ -44,7 +44,7 @@
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Mata Pelajaran</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" value="{{ $gumap->mapel->nama }}" readonly>
+                                    <input type="text" class="form-control" value="{{ $gumap->mapel->kode }}-{{ $gumap->mapel->nama }}" readonly>
                                 </div>
                             </div>
 
