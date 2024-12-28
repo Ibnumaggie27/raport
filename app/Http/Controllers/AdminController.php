@@ -217,12 +217,23 @@ class AdminController extends Controller
     }
     public function store4(Request $request)
     {
+        // Validasi input
         $request->validate([
             'guru_id' => 'required',
-            'mapel_id' => 'required',
+            'mapel_id' => 'required|array', // Pastikan mapel_id adalah array
+            'mapel_id.*' => 'exists:mapels,id', // Pastikan setiap mapel_id yang dipilih valid
         ]);
 
-        gumap::create($request->all());
+        // Simpan hubungan antara guru dan mata pelajaran
+        $guru = Guru::findOrFail($request->guru_id);
+
+        // Looping untuk menyimpan setiap mapel yang dipilih
+        foreach ($request->mapel_id as $mapel_id) {
+            Gumap::create([
+                'guru_id' => $guru->id,
+                'mapel_id' => $mapel_id,
+            ]);
+        }
 
         return redirect()->route('gumap.index')->with('success', 'Data Guru Mata Pelajaran berhasil ditambahkan.');
     }

@@ -17,13 +17,15 @@
     <form action="{{ route('gumap.store') }}" method="POST">
         @csrf
         <div class="form-group mb-3">
-            <label for="mapel_id" class="form-label">Pilih Mata Pelajaran</label>
-            <select id="mapel_id" name="mapel_id" class="form-control" required>
-                <option value="" disabled selected>Pilih Mata Pelajaran</option>
-                @foreach ($mapels as $mapel)
-                    <option value="{{ $mapel->id }}">{{ $mapel->nama }}</option>
-                @endforeach
-            </select>
+            <label for="mapel_id" class="form-label">Pilih Mata Pelajaran</label><br>
+            @foreach ($mapels as $mapel)
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="mapel_id[]" id="mapel_{{ $mapel->id }}" value="{{ $mapel->id }}">
+                    <label class="form-check-label form-label" for="mapel_{{ $mapel->id }}">
+                        {{ $mapel->nama }}
+                    </label>
+                </div>
+            @endforeach
         </div>
         <div class="form-group mb-3">
             <label for="guru_id" class="form-label">Pilih Guru</label>

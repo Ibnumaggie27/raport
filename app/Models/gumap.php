@@ -20,5 +20,10 @@ class Gumap extends Model
     {
         return $this->belongsTo(Guru::class);
     }
+    public function paket()
+{
+    return $this->hasOneThrough(Paket::class, Mapel::class, 'id', 'mapel_id', 'mapel_id', 'id');
+}
+
 }
 

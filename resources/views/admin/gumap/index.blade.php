@@ -55,20 +55,6 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $dataGumap->guru->nama }}</td>
                                 <td>{{ $dataGumap->mapel->nama }}</td>
-                                {{-- <td>
-                                    @if($dataGumap->gambar_ijazah)
-                                        <img src="{{ asset('storage/' . $dataGumap->gambar_ijazah) }}" alt="Ijazah" style="width: 100px; height: 100px; object-fit: contain;">
-                                    @else
-                                        <span>No Image</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($dataGumap->gambar_ktp)
-                                        <img src="{{ asset('storage/' . $dataGumap->gambar_ktp) }}" alt="KTP" style="width: 100px; height: 100px; object-fit: contain;">
-                                    @else
-                                        <span>No Image</span>
-                                    @endif
-                                </td> --}}
                                 <td>
                                     <div class="btn-group" role="group">
                                         <!-- Edit Button -->

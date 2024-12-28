@@ -19,4 +19,14 @@ class Mapel extends Model
     {
         return $this->belongsToMany(Paket::class, 'mapel_paket');
     }
+    public function gurus()
+    {
+        return $this->belongsToMany(Guru::class, 'gumaps');
+    }
+    // App\Models\Mapel.php
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class);
+    }
+
 }

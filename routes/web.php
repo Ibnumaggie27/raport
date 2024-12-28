@@ -83,6 +83,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:guru'])->group(function () {
     Route::get('guru', [GuruController::class, 'index'])->name('guru.index');
+
+    //start route nilai
+    Route::get('nilai', [GuruController::class, 'index1'])->name('nilai.index');
+    Route::get('/nilai/create/{mapel_id}', [GuruController::class, 'create1'])->name('nilai.create');
+    Route::post('/nilai', [GuruController::class, 'store1'])->name('nilai.store');
+    Route::get('nilai/{id}/edit', [GuruController::class, 'edit1'])->name('nilai.edit');
+    Route::put('nilai/{id}', [GuruController::class, 'update1'])->name('nilai.update');
+    Route::delete('nilai/{id}', [GuruController::class, 'destroy1'])->name('nilai.destroy');
+    //end route nilai
 });
 
 Route::middleware(['auth', 'role:user'])->group(function () {

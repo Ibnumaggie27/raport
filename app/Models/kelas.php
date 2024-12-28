@@ -19,4 +19,12 @@ class Kelas extends Model
     {
         return $this->belongsToMany(Mapel::class, 'pakets', 'kelas_id', 'mapel_id');
     }
+    public function pakets()
+    {
+        return $this->hasMany(Paket::class);
+    }
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class);
+    }
 }

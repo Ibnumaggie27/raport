@@ -29,6 +29,7 @@ class Paket extends Model
      */
     public function mapels()
     {
-        return $this->belongsToMany(Mapel::class, 'mapel_paket');
+        return $this->belongsToMany(Mapel::class, 'mapel_paket', 'paket_id', 'mapel_id');
     }
+    
 }
