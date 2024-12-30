@@ -9,6 +9,7 @@ use App\Models\Nilai;
 use App\Models\Siswa;
 use App\Models\Gumap;
 use App\Models\Paket;
+use App\Models\Evaluasi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -91,16 +92,47 @@ class GuruController extends Controller
 
 //end route nilai
 
-//start route wakel
-public function index2()
-{
-    // Fetch the guru data with their associated wakels and the related kelas
-    $gurus = Guru::with('wakels.kelas') // Eager load the 'kelas' relationship through 'wakels'
-        ->where('user_id', Auth::id()) // Filter by the logged-in user's ID
-        ->paginate(10); // Paginate the results for the teacher
+    //start route wakel
+    public function index2()
+    {
+        // Fetch the guru data with their associated wakels and the related kelas
+        $gurus = Guru::with('wakels.kelas.siswas') // Eager load the 'kelas' relationship through 'wakels'
+            ->where('user_id', Auth::id()) // Filter by the logged-in user's ID
+            ->paginate(10); // Paginate the results for the teacher
 
-    return view('guru.wakel.index', compact('gurus')); // Pass the data to the view
-}
+        return view('guru.wakel.index', compact('gurus')); // Pass the data to the view
+    }
+
+    public function evaluasi($id)
+    {
+        $kelas = Kelas::all();
+        $siswas = Siswa::find($id); // Ambil data siswa berdasarkan ID
+        // Pastikan siswa ditemukan
+        if (!$siswas) {
+            return redirect()->back()->with('error', 'Siswa tidak ditemukan!');
+        }
+
+        return view('guru.wakel.create', compact('kelas','siswas'));
+    }
+
+    public function storeEva(Request $request)
+    {
+        $request->validate([
+            'siswa_id' => 'required|exists:siswas,id',
+            'evaluasi_siswa' => 'nullable|string',
+            'catatan_guru' => 'nullable|string',
+        ]);
+
+        // Simpan data ke dalam database
+        Evaluasi::create([
+            'siswa_id' => $request->siswa_id,
+            'evaluasi_siswa' => $request->evaluasi_siswa,
+            'catatan_guru' => $request->catatan_guru,
+        ]);
+
+        return redirect()->route('wakel.index')->with('success', 'Data Evaluasi berhasil disimpan!');
+    }
+
 
     //end route wakel
 }

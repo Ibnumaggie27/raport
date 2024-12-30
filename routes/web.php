@@ -96,6 +96,12 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
     //start route wakel
     Route::get('wakel', [GuruController::class, 'index2'])->name('wakel.index');
     //end route wakel
+
+    Route::get('/wakel/create/{id}', [GuruController::class, 'evaluasi'])->name('wakel.create');
+    Route::post('/wakel', [GuruController::class, 'storeEva'])->name('wakel.store');
+
+    Route::delete('wakel/{id}', [GuruController::class, 'destroyEva'])->name('wakel.destroy');
+
 });
 
 Route::middleware(['auth', 'role:user'])->group(function () {
