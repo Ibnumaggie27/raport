@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nama'); // Nama Siswa
             $table->string('email')->nullable(); // Email Siswa
             $table->unsignedBigInteger('kelas_id')->nullable(); // Foreign key ke tabel kelas
-            $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('set null'); // Relasi dengan tabel kelas
+            $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('set null');
             $table->timestamps(); // Kolom created_at dan updated_at
         });
     }

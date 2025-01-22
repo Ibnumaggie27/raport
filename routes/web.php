@@ -99,11 +99,18 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
 
     Route::get('/wakel/create/{id}', [GuruController::class, 'evaluasi'])->name('wakel.create');
     Route::post('/wakel', [GuruController::class, 'storeEva'])->name('wakel.store');
-
     Route::delete('wakel/{id}', [GuruController::class, 'destroyEva'])->name('wakel.destroy');
 
 });
 
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('user', [UserController::class, 'index'])->name('user.index');
+
+    //start route jadwal mapel
+    Route::get('jadwal', [UserController::class, 'index1'])->name('jadwal.index');
+    //end route jadwal mapel
+
+    //start route data diri
+    Route::get('datadiri', [UserController::class, 'index2'])->name('datadiri.index');
+    //end route data diri
 });

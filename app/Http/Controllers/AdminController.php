@@ -103,12 +103,7 @@ class AdminController extends Controller
             'kelas_id' => 'nullable|exists:kelas,id',
         ]);
 
-        Siswa::create([
-            'nis' => $request->nis,
-            'nama' => $request->nama,
-            'email' => $request->email,
-            'kelas_id' => $request->kelas_id,
-        ]);
+        siswa::create($request->all());
 
         return redirect()->route('student.index')->with('success', 'Data siswa berhasil ditambahkan.');
     }

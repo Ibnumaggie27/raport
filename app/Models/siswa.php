@@ -11,19 +11,29 @@ class Siswa extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nis', 'nama', 'email', 'kelas_id']; // Tambahkan atribut sesuai dengan tabel siswa
+    protected $fillable = ['nis', 'nama', 'email', 'kelas_id', 'user_id']; // Tambahkan atribut sesuai dengan tabel siswa
 
     protected static function booted()
+{
+    static::created(function ($siswa) {
+        // Buat User baru
+        $user = User::create([
+            'nama' => $siswa->nama,
+            'username' => $siswa->nis, // Username diambil dari NIS
+            'password' => bcrypt('123456'), // Password default
+            'email' => $siswa->email,
+            'role' => 'user', // Set role sebagai siswa
+        ]);
+
+        // Set user_id ke siswa
+        $siswa->user_id = $user->id;
+        $siswa->save();
+    });
+}
+
+    public function user()
     {
-        static::created(function ($siswa) {
-            User::create([
-                'nama' => $siswa->nama,
-                'username' => $siswa->nis, // Username diambil dari NIS
-                'password' => bcrypt('123456'), // Password default
-                'email' => $siswa->email,
-                'role' => 'user', // Set role sebagai siswa
-            ]);
-        });
+        return $this->belongsTo(User::class);
     }
     public function kelas()
     {

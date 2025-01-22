@@ -46,4 +46,12 @@ class User extends Authenticatable
 {
     return $this->hasOne(Guru::class);
 }
+public function siswa()
+{
+    return $this->hasOne(Siswa::class, 'user_id');
+}
+public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id');
+    }
 }
